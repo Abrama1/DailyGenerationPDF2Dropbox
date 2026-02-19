@@ -1,0 +1,12 @@
+# Worker
+httpx
+pymupdf
+dropbox
+python-dateutil
+pydantic
+pydantic-settings
+
+# Dashboard (static site uses plain JS, no deps)
+
+# Testing
+pytest
