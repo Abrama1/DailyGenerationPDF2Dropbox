@@ -1,9 +1,10 @@
 from __future__ import annotations
 
 import sqlite3
+from contextlib import contextmanager
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Iterable, Optional
+from typing import Any, Iterator
 
 
 @dataclass(frozen=True)
@@ -20,31 +21,39 @@ def _ensure_parent_dir(db_path: str) -> None:
     Path(db_path).parent.mkdir(parents=True, exist_ok=True)
 
 
-def connect(db_path: str) -> sqlite3.Connection:
+def _open_connection(db_path: str) -> sqlite3.Connection:
     _ensure_parent_dir(db_path)
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
-    # Good defaults for reliability:
+
+    # Reliability / portability (esp. Windows tests)
     conn.execute("PRAGMA foreign_keys = ON;")
-    conn.execute("PRAGMA journal_mode = WAL;")
+    conn.execute("PRAGMA journal_mode = DELETE;")  # avoid WAL temp files/locks on Windows
     conn.execute("PRAGMA synchronous = NORMAL;")
+
     return conn
+
+
+@contextmanager
+def db_conn(db_path: str) -> Iterator[sqlite3.Connection]:
+    conn = _open_connection(db_path)
+    try:
+        yield conn
+        conn.commit()
+    finally:
+        conn.close()
 
 
 def init_db(db_path: str) -> None:
     schema_path = Path(__file__).with_name("schema.sql")
     schema_sql = schema_path.read_text(encoding="utf-8")
 
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         conn.executescript(schema_sql)
-        conn.commit()
 
 
 def create_run(db_path: str, *, started_at: str, source_url: str | None = None) -> int:
-    """
-    Inserts a run row with status=running and returns run_id.
-    """
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         cur = conn.execute(
             """
             INSERT INTO runs (started_at, status, source_url)
@@ -52,7 +61,6 @@ def create_run(db_path: str, *, started_at: str, source_url: str | None = None) 
             """,
             (started_at, source_url),
         )
-        conn.commit()
         return int(cur.lastrowid)
 
 
@@ -64,7 +72,7 @@ def finish_run(
     duration_ms: int,
     result: RunFinish,
 ) -> None:
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         conn.execute(
             """
             UPDATE runs
@@ -90,11 +98,10 @@ def finish_run(
                 run_id,
             ),
         )
-        conn.commit()
 
 
 def is_processed(db_path: str, *, date_key: str) -> bool:
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         row = conn.execute(
             "SELECT 1 FROM processed_reports WHERE date_key = ? LIMIT 1",
             (date_key,),
@@ -110,11 +117,7 @@ def mark_processed(
     processed_at: str,
     source_url: str,
 ) -> None:
-    """
-    Records a successfully processed date_key.
-    Uses INSERT OR IGNORE to be safe in rare duplicate situations.
-    """
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         conn.execute(
             """
             INSERT OR IGNORE INTO processed_reports
@@ -123,11 +126,10 @@ def mark_processed(
             """,
             (date_key, dropbox_path, processed_at, source_url),
         )
-        conn.commit()
 
 
 def fetch_recent_runs(db_path: str, *, limit: int = 50) -> list[dict[str, Any]]:
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         rows = conn.execute(
             """
             SELECT id, started_at, finished_at, duration_ms, status,
@@ -142,7 +144,7 @@ def fetch_recent_runs(db_path: str, *, limit: int = 50) -> list[dict[str, Any]]:
 
 
 def fetch_last_success_date_key(db_path: str) -> str | None:
-    with connect(db_path) as conn:
+    with db_conn(db_path) as conn:
         row = conn.execute(
             """
             SELECT date_key
