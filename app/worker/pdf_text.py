@@ -1,3 +1,4 @@
+# app/worker/pdf_text.py
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -15,20 +16,16 @@ class PdfTextExtractError(Exception):
         return self.message
 
 
+def _normalize_pdf_text(s: str) -> str:
+    # Replace non-breaking spaces and collapse weird whitespace into normal spaces
+    return " ".join((s or "").replace("\xa0", " ").split())
+
+
 def extract_text_from_pdf(
     pdf_path: str | Path,
     *,
     pages: Iterable[int] = (0, 1),
 ) -> str:
-    """
-    Extracts plain text from selected pages of a PDF using PyMuPDF.
-
-    - `pages` are 0-based page indices.
-    - Missing page indices are ignored.
-    - Returns a single combined string (pages separated by blank lines).
-
-    Raises PdfTextExtractError for IO/corrupted PDF issues.
-    """
     pdf_path = Path(pdf_path)
 
     if not pdf_path.exists():
@@ -48,7 +45,7 @@ def extract_text_from_pdf(
                 continue
             page = doc.load_page(idx)
             text = page.get_text("text") or ""
-            text = text.strip()
+            text = _normalize_pdf_text(text)
             if text:
                 parts.append(text)
 
