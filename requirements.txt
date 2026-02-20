@@ -1,6 +1,6 @@
 # Worker
 httpx
-pymupdf
+PyMuPDF
 dropbox
 python-dateutil
 pydantic
