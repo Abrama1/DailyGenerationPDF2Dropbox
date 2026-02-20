@@ -21,6 +21,7 @@ from app.worker.dropbox_client import (
 )
 from app.worker.pdf_date import DateParseError, parse_date_key_from_text
 from app.worker.pdf_text import PdfTextExtractError, extract_text_from_pdf
+from app.worker.dashboard_export import export_dashboard_json
 
 
 class DropboxLike(Protocol):
@@ -245,6 +246,8 @@ def main() -> None:
         duration_ms=_duration_ms(t0, perf_counter()),
         result=result,
     )
+
+    export_dashboard_json(settings.db_path, out_dir="site/data", runs_limit=100)
 
     msg = f"{result.status}"
     if result.date_key:
