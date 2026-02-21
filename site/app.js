@@ -129,8 +129,9 @@ function bindControls(allRuns) {
 
 async function init() {
   try {
-    const summary = await fetchJson("./data/summary.json");
-    const runsPayload = await fetchJson("./data/runs.json");
+    const bust = `?v=${Date.now()}`;
+    const summary = await fetchJson(`./data/summary.json${bust}`);
+    const runsPayload = await fetchJson(`./data/runs.json${bust}`);
     const runs = Array.isArray(runsPayload?.runs) ? runsPayload.runs : [];
 
     setCards(summary);
