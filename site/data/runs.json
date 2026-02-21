@@ -1,49 +1,16 @@
 {
-  "generated_at": "2026-02-21T13:05:56+00:00",
+  "generated_at": "2026-02-21T13:20:23+00:00",
   "runs": [
     {
-      "id": 4,
-      "started_at": "2026-02-21T13:05:55+00:00",
-      "finished_at": "2026-02-21T13:05:56+00:00",
-      "duration_ms": 649,
-      "status": "duplicate_db",
-      "date_key": "20260219",
-      "stop_reason": "Already processed (SQLite)",
-      "error_message": null,
-      "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260219.pdf"
-    },
-    {
-      "id": 3,
-      "started_at": "2026-02-21T12:21:32+00:00",
-      "finished_at": "2026-02-21T12:21:34+00:00",
-      "duration_ms": 2466,
+      "id": 1,
+      "started_at": "2026-02-21T13:20:20+00:00",
+      "finished_at": "2026-02-21T13:20:23+00:00",
+      "duration_ms": 3312,
       "status": "uploaded",
       "date_key": "20260219",
       "stop_reason": "Uploaded successfully",
       "error_message": null,
       "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260219.pdf"
-    },
-    {
-      "id": 2,
-      "started_at": "2026-02-21T12:18:17+00:00",
-      "finished_at": "2026-02-21T12:18:18+00:00",
-      "duration_ms": 1108,
-      "status": "dropbox_auth_error",
-      "date_key": "20260219",
-      "stop_reason": "Dropbox authentication failed",
-      "error_message": "Dropbox auth failed: AuthError('e73bc25cee934a7ea99dce116999a28a', AuthError('missing_scope', TokenScopeError(required_scope='files.metadata.read')))",
-      "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260219.pdf"
-    },
-    {
-      "id": 1,
-      "started_at": "2026-02-21T12:15:17+00:00",
-      "finished_at": "2026-02-21T12:15:19+00:00",
-      "duration_ms": 1207,
-      "status": "unexpected_error",
-      "date_key": null,
-      "stop_reason": "Unexpected failure",
-      "error_message": "BadInputError('1a1519d990e749e98db93cc06999a1d6', 'Error in call to API function \"files/get_metadata\": Your app (ID: 6029555) is not permitted to access this endpoint because it does not have the required scope \\'files.metadata.read\\'. The owner of the app can enable the scope for the app using the Permissions tab on the App Console.')",
-      "dropbox_path": null
     }
   ]
 }
