@@ -22,13 +22,31 @@
 
 * { box-sizing: border-box; }
 html, body { height: 100%; }
+
+html {
+  background: var(--bg);
+}
+
 body {
   margin: 0;
   font-family: var(--sans);
   color: var(--text);
-  background: radial-gradient(1000px 600px at 20% 10%, rgba(122, 168, 255, 0.12), transparent 60%),
-              radial-gradient(900px 500px at 80% 0%, rgba(61, 220, 151, 0.10), transparent 55%),
-              var(--bg);
+  background: var(--bg);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fixed gradient layer (does NOT scroll / does NOT repeat) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1000px 600px at 20% 10%, rgba(122, 168, 255, 0.12), transparent 60%),
+    radial-gradient(900px 500px at 80% 0%, rgba(61, 220, 151, 0.10), transparent 55%),
+    var(--bg);
 }
 
 .container {
@@ -191,6 +209,7 @@ body {
 
 .list {
   padding: 10px;
+  background: var(--panel);
 }
 
 .row {
