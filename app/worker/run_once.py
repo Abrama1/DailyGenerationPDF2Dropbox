@@ -137,7 +137,7 @@ def run_once(
                 )
 
             # 5) Dropbox check/upload
-            client: DropboxLike = dbx if dbx is not None else DropboxClient(settings.dropbox_access_token)
+            client: DropboxLike = dbx if dbx is not None else DropboxClient(settings)
 
             try:
                 if client.exists(dropbox_path):

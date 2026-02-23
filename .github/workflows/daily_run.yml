@@ -37,9 +37,12 @@ jobs:
       - name: Run worker
         env:
           SOURCE_PDF_URL: ${{ secrets.SOURCE_PDF_URL }}
-          DROPBOX_ACCESS_TOKEN: ${{ secrets.DROPBOX_ACCESS_TOKEN }}
           DROPBOX_TARGET_FOLDER: ${{ secrets.DROPBOX_TARGET_FOLDER }}
           DB_PATH: "data/app.sqlite"
+
+          DROPBOX_APP_KEY: ${{ secrets.DROPBOX_APP_KEY }}
+          DROPBOX_APP_SECRET: ${{ secrets.DROPBOX_APP_SECRET }}
+          DROPBOX_REFRESH_TOKEN: ${{ secrets.DROPBOX_REFRESH_TOKEN }}
         run: |
           python -m app.worker.run_once
 

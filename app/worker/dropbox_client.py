@@ -2,10 +2,13 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 import dropbox
 from dropbox.exceptions import ApiError, AuthError
 from dropbox.files import WriteMode
+
+from app.config import Settings
 
 
 @dataclass(frozen=True)
@@ -72,10 +75,61 @@ def _is_upload_conflict_api_error(e: ApiError) -> bool:
     return False
 
 
+def _build_real_dropbox_client(auth: Settings | str) -> dropbox.Dropbox:
+    """
+    Build a real Dropbox SDK client from either:
+    - Settings (preferred)
+    - raw access token string (legacy fallback / backward compatibility)
+    """
+    # Backward compatibility: allow old call style DropboxClient(access_token)
+    if isinstance(auth, str):
+        token = auth.strip()
+        if not token:
+            raise DropboxAuthFailed("Dropbox access token is empty.")
+        return dropbox.Dropbox(oauth2_access_token=token, timeout=100)
+
+    # Preferred: refresh-token flow (long-lived automation)
+    if auth.has_dropbox_refresh_auth:
+        return dropbox.Dropbox(
+            oauth2_refresh_token=auth.dropbox_refresh_token,
+            app_key=auth.dropbox_app_key,
+            app_secret=auth.dropbox_app_secret,
+            timeout=100,
+        )
+
+    # Fallback: short-lived access token
+    if auth.dropbox_access_token:
+        return dropbox.Dropbox(
+            oauth2_access_token=auth.dropbox_access_token,
+            timeout=100,
+        )
+
+    raise DropboxAuthFailed(
+        "Dropbox credentials are not configured correctly. "
+        "Provide refresh-token auth or access token."
+    )
+
+
 class DropboxClient:
-    def __init__(self, access_token: str, *, dbx: object | None = None) -> None:
-        # `dbx` injection is for testing. In prod we create a real Dropbox client.
-        self._dbx = dbx if dbx is not None else dropbox.Dropbox(access_token)
+    def __init__(
+        self,
+        auth: Settings | str | None = None,
+        *,
+        dbx: object | None = None,
+    ) -> None:
+        """
+        `dbx` injection is for tests. In production pass:
+          - Settings (recommended), or
+          - access token string (legacy)
+        """
+        if dbx is not None:
+            self._dbx = dbx
+            return
+
+        if auth is None:
+            raise DropboxAuthFailed("Dropbox client requires Settings or access token.")
+
+        self._dbx = _build_real_dropbox_client(auth)
 
     def exists(self, path: str) -> bool:
         path = _normalize_dbx_path(path)
