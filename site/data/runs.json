@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-02-22T19:34:47+00:00",
+  "generated_at": "2026-02-23T20:01:23+00:00",
   "runs": [
+    {
+      "id": 5,
+      "started_at": "2026-02-23T20:01:20+00:00",
+      "finished_at": "2026-02-23T20:01:23+00:00",
+      "duration_ms": 2171,
+      "status": "dropbox_auth_error",
+      "date_key": "20260222",
+      "stop_reason": "Dropbox authentication failed",
+      "error_message": "Dropbox auth failed: AuthError('5062132fd6aa495097bf0307699cb212', AuthError('expired_access_token', None))",
+      "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260222.pdf"
+    },
     {
       "id": 4,
       "started_at": "2026-02-22T19:34:45+00:00",
