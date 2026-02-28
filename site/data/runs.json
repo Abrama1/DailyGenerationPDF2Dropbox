@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-02-27T19:41:17+00:00",
+  "generated_at": "2026-02-28T19:29:22+00:00",
   "runs": [
+    {
+      "id": 12,
+      "started_at": "2026-02-28T19:29:21+00:00",
+      "finished_at": "2026-02-28T19:29:22+00:00",
+      "duration_ms": 1558,
+      "status": "duplicate_db",
+      "date_key": "20260226",
+      "stop_reason": "Already processed (SQLite)",
+      "error_message": null,
+      "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260226.pdf"
+    },
     {
       "id": 11,
       "started_at": "2026-02-27T19:41:14+00:00",
