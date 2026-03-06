@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-03-05T19:58:06+00:00",
-  "last_success_date_key": "20260304",
+  "generated_at": "2026-03-06T19:41:57+00:00",
+  "last_success_date_key": "20260305",
   "last_run": {
-    "id": 17,
-    "started_at": "2026-03-05T19:57:58+00:00",
-    "finished_at": "2026-03-05T19:58:06+00:00",
-    "duration_ms": 7400,
+    "id": 18,
+    "started_at": "2026-03-06T19:41:55+00:00",
+    "finished_at": "2026-03-06T19:41:57+00:00",
+    "duration_ms": 2843,
     "status": "uploaded",
-    "date_key": "20260304",
+    "date_key": "20260305",
     "stop_reason": "Uploaded successfully",
     "error_message": null,
-    "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260304.pdf"
+    "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260305.pdf"
   }
 }
