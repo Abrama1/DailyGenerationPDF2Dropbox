@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-04-12T19:47:16+00:00",
+  "generated_at": "2026-04-13T20:10:46+00:00",
   "runs": [
+    {
+      "id": 56,
+      "started_at": "2026-04-13T20:10:43+00:00",
+      "finished_at": "2026-04-13T20:10:46+00:00",
+      "duration_ms": 2104,
+      "status": "duplicate_db",
+      "date_key": "20260407",
+      "stop_reason": "Already processed (SQLite)",
+      "error_message": null,
+      "dropbox_path": "/Renovis/ESCO daily data/20260407.pdf"
+    },
     {
       "id": 55,
       "started_at": "2026-04-12T19:47:14+00:00",
