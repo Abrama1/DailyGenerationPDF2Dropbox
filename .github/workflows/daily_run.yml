@@ -5,7 +5,7 @@ on:
   schedule:
     # 23:00 Asia/Tbilisi == 19:00 UTC
     # Using minute 07 to avoid top-of-hour delays
-    - cron: "7 19 * * *"
+    - cron: "7 18 * * *"
 
 permissions:
   contents: write
