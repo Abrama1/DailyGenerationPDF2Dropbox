@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-05-03T19:13:39+00:00",
+  "generated_at": "2026-05-04T19:52:43+00:00",
   "runs": [
+    {
+      "id": 77,
+      "started_at": "2026-05-04T19:52:40+00:00",
+      "finished_at": "2026-05-04T19:52:43+00:00",
+      "duration_ms": 3626,
+      "status": "uploaded",
+      "date_key": "20260503",
+      "stop_reason": "Uploaded successfully",
+      "error_message": null,
+      "dropbox_path": "/Renovis/ESCO daily data/20260503.pdf"
+    },
     {
       "id": 76,
       "started_at": "2026-05-03T19:13:37+00:00",
