@@ -1,6 +1,17 @@
 {
-  "generated_at": "2026-05-31T19:38:24+00:00",
+  "generated_at": "2026-06-01T21:42:00+00:00",
   "runs": [
+    {
+      "id": 105,
+      "started_at": "2026-06-01T21:41:57+00:00",
+      "finished_at": "2026-06-01T21:42:00+00:00",
+      "duration_ms": 2596,
+      "status": "uploaded",
+      "date_key": "20260531",
+      "stop_reason": "Uploaded successfully",
+      "error_message": null,
+      "dropbox_path": "/Renovis/ESCO daily data/20260531.pdf"
+    },
     {
       "id": 104,
       "started_at": "2026-05-31T19:38:23+00:00",
@@ -1088,17 +1099,6 @@
       "date_key": "20260222",
       "stop_reason": "Uploaded successfully",
       "error_message": null,
-      "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260222.pdf"
-    },
-    {
-      "id": 5,
-      "started_at": "2026-02-23T20:01:20+00:00",
-      "finished_at": "2026-02-23T20:01:23+00:00",
-      "duration_ms": 2171,
-      "status": "dropbox_auth_error",
-      "date_key": "20260222",
-      "stop_reason": "Dropbox authentication failed",
-      "error_message": "Dropbox auth failed: AuthError('5062132fd6aa495097bf0307699cb212', AuthError('expired_access_token', None))",
       "dropbox_path": "/Renovis/DailyGenerationPDF2Dropbox/20260222.pdf"
     }
   ]
