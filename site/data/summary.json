@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-09-15T21:14:17+00:00",
-  "last_success_date_key": "20260914",
+  "generated_at": "2026-09-16T21:13:34+00:00",
+  "last_success_date_key": "20260915",
   "last_run": {
-    "id": 211,
-    "started_at": "2026-09-15T21:14:14+00:00",
-    "finished_at": "2026-09-15T21:14:17+00:00",
-    "duration_ms": 2967,
+    "id": 212,
+    "started_at": "2026-09-16T21:13:31+00:00",
+    "finished_at": "2026-09-16T21:13:34+00:00",
+    "duration_ms": 3168,
     "status": "uploaded",
-    "date_key": "20260914",
+    "date_key": "20260915",
     "stop_reason": "Uploaded successfully",
     "error_message": null,
-    "dropbox_path": "/Renovis/ESCO daily data/20260914.pdf"
+    "dropbox_path": "/Renovis/ESCO daily data/20260915.pdf"
   }
 }
