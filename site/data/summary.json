@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-10-09T22:33:25+00:00",
+  "generated_at": "2026-10-10T21:32:49+00:00",
   "last_success_date_key": "20261008",
   "last_run": {
-    "id": 235,
-    "started_at": "2026-10-09T22:33:22+00:00",
-    "finished_at": "2026-10-09T22:33:25+00:00",
-    "duration_ms": 3298,
-    "status": "uploaded",
+    "id": 236,
+    "started_at": "2026-10-10T21:32:48+00:00",
+    "finished_at": "2026-10-10T21:32:49+00:00",
+    "duration_ms": 1327,
+    "status": "duplicate_db",
     "date_key": "20261008",
-    "stop_reason": "Uploaded successfully",
+    "stop_reason": "Already processed (SQLite)",
     "error_message": null,
     "dropbox_path": "/Renovis/ESCO daily data/20261008.pdf"
   }
