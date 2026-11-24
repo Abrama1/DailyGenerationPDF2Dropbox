@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-11-22T23:32:32+00:00",
+  "generated_at": "2026-11-24T03:55:49+00:00",
   "last_success_date_key": "20261119",
   "last_run": {
-    "id": 279,
-    "started_at": "2026-11-22T23:32:31+00:00",
-    "finished_at": "2026-11-22T23:32:32+00:00",
-    "duration_ms": 1317,
+    "id": 280,
+    "started_at": "2026-11-24T03:55:47+00:00",
+    "finished_at": "2026-11-24T03:55:49+00:00",
+    "duration_ms": 1446,
     "status": "duplicate_db",
     "date_key": "20261119",
     "stop_reason": "Already processed (SQLite)",
